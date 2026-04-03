@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Supply Outlet Sheet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700&display=swap');
+
+:root {
+–bg:#0f1117; –sf:#1a1d27; –sf2:#22263a; –bd:#2e3350;
+–ac:#00d4ff; –ac2:#ff6b35; –tx:#e8eaf0; –mu:#6b7196;
+–go:#2ecc71; –wa:#f39c12; –ba:#e74c3c; –hb:#111827;
+}
+
+- { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  body { background:var(–bg); color:var(–tx); font-family:‘Barlow Condensed’,sans-serif; min-height:100vh; padding-bottom:70px; }
+
+/* TOP BAR */
+.topbar { background:var(–hb); border-bottom:2px solid var(–ac); padding:12px 12px 10px; position:sticky; top:0; z-index:100; }
+.tr1 { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.ttl { font-family:‘Share Tech Mono’,monospace; font-size:10px; color:var(–ac); letter-spacing:3px; text-transform:uppercase; flex:1; }
+.svpill { font-family:‘Share Tech Mono’,monospace; font-size:9px; color:var(–go); letter-spacing:1px; opacity:0; transition:opacity .4s; }
+.svpill.show { opacity:1; }
+.jbtn { background:var(–sf2); border:1px solid var(–bd); color:var(–ac); font-family:‘Share Tech Mono’,monospace; font-size:10px; padding:5px 10px; border-radius:4px; cursor:pointer; letter-spacing:1px; }
+.ur { display:flex; gap:8px; align-items:center; }
+.ui { background:var(–sf2); border:1px solid var(–bd); color:var(–tx); font-family:‘Barlow Condensed’,sans-serif; font-size:18px; font-weight:700; padding:6px 10px; border-radius:4px; flex:1; letter-spacing:1px; }
+.ui::placeholder { color:var(–mu); font-weight:400; }
+.ui:focus { outline:none; border-color:var(–ac); }
+.badge { background:var(–ac); color:#000; font-family:‘Share Tech Mono’,monospace; font-size:10px; font-weight:700; padding:4px 8px; border-radius:3px; white-space:nowrap; }
+
+/* INFO BARS */
+.ibar { display:flex; align-items:center; gap:10px; padding:9px 12px; background:var(–sf); border-bottom:1px solid var(–bd); }
+.ibar label { font-size:11px; color:var(–mu); letter-spacing:1px; text-transform:uppercase; white-space:nowrap; }
+.ibar .hint { font-size:10px; color:var(–mu); flex:1; text-align:right; }
+.ival { font-family:‘Share Tech Mono’,monospace; font-size:20px; color:var(–ac2); min-width:60px; }
+.akin { background:var(–sf2); border:1px solid var(–bd); color:var(–ac2); font-family:‘Share Tech Mono’,monospace; font-size:16px; padding:5px 8px; border-radius:4px; width:100px; text-align:center; }
+.akin::placeholder { color:#3a3f60; }
+.akin:focus { outline:none; border-color:var(–ac2); }
+
+/* PROGRESS */
+.pw { padding:8px 12px 0; background:var(–sf); border-bottom:1px solid var(–bd); }
+.pt { height:3px; background:var(–bd); border-radius:2px; overflow:hidden; }
+.pf { height:100%; width:0%; background:linear-gradient(90deg,var(–ac),var(–go)); border-radius:2px; transition:width .3s; }
+.pl { font-family:‘Share Tech Mono’,monospace; font-size:9px; color:var(–mu); text-align:right; margin-top:3px; padding-bottom:7px; letter-spacing:1px; }
+
+/* TOTALS */
+.totbar { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(–bd); border-bottom:2px solid var(–bd); }
+.tc { background:var(–sf); padding:8px 4px; text-align:center; }
+.tc .tl { font-size:9px; color:var(–mu); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:2px; }
+.tc .tv { font-family:‘Share Tech Mono’,monospace; font-size:14px; color:var(–ac); font-weight:700; }
+
+/* GRID — always 5 data columns */
+.chead { display:grid; grid-template-columns:44px 1fr 1fr 1fr 1fr 1fr; gap:1px; background:var(–bd); position:sticky; top:84px; z-index:90; }
+.orow  { display:grid; grid-template-columns:44px 1fr 1fr 1fr 1fr 1fr; gap:1px; background:var(–bd); }
+
+.ch { background:#1e2235; padding:8px 1px 6px; text-align:center; font-size:9px; font-weight:700; color:var(–mu); letter-spacing:.3px; text-transform:uppercase; line-height:1.3; }
+.ch sub { display:block; font-family:‘Share Tech Mono’,monospace; font-size:7px; color:#454970; margin-top:1px; }
+.ch.lbl { background:var(–hb); }
+.ch.akc { background:rgba(255,107,53,0.15); color:var(–ac2); }
+
+/* OUTLET ROWS */
+.olist { display:flex; flex-direction:column; gap:1px; background:var(–bd); }
+.orow:nth-child(even) .oc { background:var(–sf); }
+.orow:nth-child(odd)  .oc { background:#161929; }
+.olbl { background:var(–hb)!important; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3px 1px; gap:2px; border-right:2px solid var(–bd); }
+.onum { font-family:‘Share Tech Mono’,monospace; font-size:10px; color:var(–ac); }
+.otag { font-size:7px; color:var(–mu); text-transform:uppercase; letter-spacing:.5px; }
+.oc { padding:0; }
+.oc input { width:100%; height:100%; min-height:48px; background:transparent; border:none; color:var(–tx); font-family:‘Share Tech Mono’,monospace; font-size:14px; text-align:center; padding:2px; }
+.oc input:focus { outline:none; background:rgba(0,212,255,.07); color:#fff; }
+.oc input::placeholder { color:#2a2e48; font-size:18px; }
+.oc.des input { color:#a8b4ff; }
+.oc.cfm { background:rgba(0,212,255,.04)!important; }
+.oc.cfm input { color:var(–ac); font-size:12px; }
+.oc.pre input:not(:placeholder-shown) { color:#c8f0d8; }
+.oc.ppc { background:rgba(255,107,53,.04)!important; }
+
+/* Prelim % display */
+.ppv { display:flex; align-items:center; justify-content:center; min-height:48px; font-family:‘Share Tech Mono’,monospace; font-size:12px; font-weight:700; }
+.ppv.e { color:#2a2e48; }
+.ppv.g { color:var(–go); }
+.ppv.m { color:var(–wa); }
+.ppv.b { color:var(–ba); }
+
+/* True CFM (AK) display */
+.oc.akcol { background:rgba(255,107,53,.06)!important; }
+.akv { display:flex; align-items:center; justify-content:center; min-height:48px; font-family:‘Share Tech Mono’,monospace; font-size:12px; font-weight:700; color:var(–ac2); }
+.akv.e { color:#3a2a1a; }
+
+/* Row status */
+.orow.complete .olbl { border-left:3px solid var(–go); }
+.orow.partial  .olbl { border-left:3px solid var(–wa); }
+
+/* ACTION BAR */
+.actbar { position:fixed; bottom:0; left:0; right:0; background:var(–hb); border-top:2px solid var(–bd); display:flex; gap:1px; z-index:200; }
+.ab { flex:1; padding:15px 4px; background:var(–sf); border:none; color:var(–mu); font-family:‘Barlow Condensed’,sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; }
+.ab:active { background:var(–sf2); color:var(–tx); }
+.ab.pri { color:var(–ac); }
+.ab.dan { color:var(–ba); }
+
+/* JOBS OVERLAY */
+.ov { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:400; align-items:flex-end; }
+.ov.open { display:flex; }
+.dr { background:var(–sf); width:100%; border-radius:16px 16px 0 0; border-top:2px solid var(–ac); max-height:80vh; overflow-y:auto; padding-bottom:40px; }
+.dh { display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid var(–bd); position:sticky; top:0; background:var(–sf); }
+.dh h2 { font-family:‘Share Tech Mono’,monospace; font-size:12px; color:var(–ac); letter-spacing:2px; }
+.dc { background:none; border:none; color:var(–mu); font-size:22px; cursor:pointer; }
+.jr { display:flex; align-items:center; padding:14px 16px; border-bottom:1px solid var(–bd); gap:10px; cursor:pointer; }
+.jr:active { background:var(–sf2); }
+.ji { flex:1; min-width:0; }
+.jn { font-size:16px; font-weight:700; color:var(–tx); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.jm { font-family:‘Share Tech Mono’,monospace; font-size:10px; color:var(–mu); margin-top:3px; }
+.jab { font-family:‘Share Tech Mono’,monospace; font-size:9px; background:var(–ac); color:#000; padding:2px 6px; border-radius:3px; white-space:nowrap; }
+.jdl { background:none; border:none; color:var(–ba); font-size:20px; cursor:pointer; padding:4px 8px; }
+.njb { display:block; margin:16px; width:calc(100% - 32px); padding:14px; background:transparent; border:1px dashed var(–bd); color:var(–ac); font-family:‘Barlow Condensed’,sans-serif; font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:6px; cursor:pointer; }
+.nojobs { padding:30px 16px; text-align:center; font-family:‘Share Tech Mono’,monospace; font-size:11px; color:var(–mu); line-height:2; }
+</style>
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tr1">
+    <span class="ttl">▸ Supply Outlet Sheet</span>
+    <span class="svpill" id="svpill">SAVED ✓</span>
+    <button class="jbtn" onclick="openJobs()">JOBS ☰</button>
+  </div>
+  <div class="ur">
+    <input class="ui" id="uname" placeholder="Unit ID — e.g. RTU-01" maxlength="40" oninput="autoSave()">
+    <div class="badge" id="sbadge">0/20</div>
+  </div>
+</div>
+
+<div class="ibar">
+  <label>Target %</label>
+  <span class="ival" id="tpct">—</span>
+  <span class="hint">Prelim ÷ Design totals</span>
+</div>
+
+<div class="ibar">
+  <label>AK Factor</label>
+  <input class="akin" id="akf" type="number" inputmode="decimal" step="0.001" min="0" placeholder="optional" oninput="refreshAll();autoSave()">
+  <span class="hint">Prelim × AK = True CFM</span>
+</div>
+
+<div class="pw">
+  <div class="pt"><div class="pf" id="pf"></div></div>
+  <div class="pl" id="pl">0 of 20 outlets complete</div>
+</div>
+
+<div class="totbar">
+  <div class="tc"><span class="tl">Design</span><span class="tv" id="tD">—</span></div>
+  <div class="tc"><span class="tl">Tgt %</span><span class="tv" id="tPt" style="color:var(--ac2)">—</span></div>
+  <div class="tc"><span class="tl">CFM Calc</span><span class="tv" id="tC">—</span></div>
+  <div class="tc"><span class="tl">Prelim</span><span class="tv" id="tPr">—</span></div>
+</div>
+
+<!-- FIXED 5-column header — always rendered -->
+
+<div class="chead">
+  <div class="ch lbl">OTL</div>
+  <div class="ch">Des<sub>CFM</sub></div>
+  <div class="ch">CFM<sub>Calc</sub></div>
+  <div class="ch">Prelim<sub>CFM</sub></div>
+  <div class="ch">Pre<sub>%</sub></div>
+  <div class="ch akc">True<sub>CFM</sub></div>
+</div>
+
+<div class="olist" id="olist"></div>
+
+<div class="actbar">
+  <button class="ab dan" onclick="clearAll()">Clear</button>
+  <button class="ab" onclick="addRow()">+ Row</button>
+  <button class="ab pri" onclick="copyCSV()">Copy CSV</button>
+</div>
+
+<div class="ov" id="ov" onclick="bgClose(event)">
+  <div class="dr">
+    <div class="dh"><h2>SAVED JOBS</h2><button class="dc" onclick="closeJobs()">✕</button></div>
+    <div id="jlist"></div>
+    <button class="njb" onclick="newJob()">+ New Job / Unit</button>
+  </div>
+</div>
+
+<script>
+const DR = 20;
+let rc = DR, cid = null, stimer = null;
+
+// ── STORAGE ──────────────────────────────────────────────────
+function getJobs() { try { return JSON.parse(localStorage.getItem('sos4') || '{}'); } catch(e) { return {}; } }
+function putJobs(j) { localStorage.setItem('sos4', JSON.stringify(j)); }
+function getSavedId() { return localStorage.getItem('sos4c') || null; }
+function setSavedId(id) { localStorage.setItem('sos4c', id); cid = id; }
+
+function v(id) { const e = document.getElementById(id); return e ? e.value : ''; }
+function s(id, val) { const e = document.getElementById(id); if (e) e.value = val; }
+
+// ── CAPTURE / RESTORE ─────────────────────────────────────────
+function capture() {
+  const outlets = [];
+  for (let i = 1; i <= rc; i++) outlets.push({ d: v('d'+i), p: v('p'+i) });
+  return { name: v('uname'), ak: v('akf'), rows: rc, outlets, ts: Date.now() };
+}
+
+function restore(st) {
+  if (!st) return;
+  rc = st.rows || DR;
+  buildRows(rc);
+  s('uname', st.name || '');
+  s('akf', st.ak || '');
+  (st.outlets || []).forEach((o, i) => { s('d'+(i+1), o.d||''); s('p'+(i+1), o.p||''); });
+  refreshAll();
+}
+
+// ── AUTO-SAVE ─────────────────────────────────────────────────
+function autoSave() {
+  if (!cid) { cid = 'j' + Date.now(); setSavedId(cid); }
+  clearTimeout(stimer);
+  stimer = setTimeout(() => {
+    const jobs = getJobs(); jobs[cid] = capture(); putJobs(jobs);
+    const el = document.getElementById('svpill');
+    el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1800);
+  }, 500);
+}
+
+// ── BUILD ROWS ────────────────────────────────────────────────
+function buildRows(n) {
+  const list = document.getElementById('olist');
+  list.innerHTML = '';
+  for (let i = 1; i <= n; i++) appendRow(i, list);
+}
+
+function appendRow(i, list) {
+  if (!list) list = document.getElementById('olist');
+  const row = document.createElement('div');
+  row.className = 'orow';
+  row.id = 'row' + i;
+  // Always render all 5 columns — True CFM always present, shows — when no AK
+  row.innerHTML =
+    '<div class="olbl"><span class="onum">' + String(i).padStart(2,'0') + '</span><span class="otag">OTL</span></div>' +
+    '<div class="oc des"><input type="number" inputmode="numeric" placeholder="—" id="d'+i+'" oninput="refreshAll();autoSave()"></div>' +
+    '<div class="oc cfm"><input type="number" placeholder="—" id="c'+i+'" readonly tabindex="-1"></div>' +
+    '<div class="oc pre"><input type="number" inputmode="numeric" placeholder="—" id="p'+i+'" oninput="refreshAll();autoSave()"></div>' +
+    '<div class="oc ppc"><div class="ppv e" id="pv'+i+'">—</div></div>' +
+    '<div class="oc akcol"><div class="akv e" id="av'+i+'">—</div></div>';
+  list.appendChild(row);
+}
+
+// ── CALCULATIONS ──────────────────────────────────────────────
+function getAK() { return parseFloat(v('akf')) || 0; }
+
+// Target % = raw Prelim total ÷ Design total — AK never involved
+function calcTgtPct() {
+  let tD = 0, tP = 0;
+  for (let i = 1; i <= rc; i++) {
+    tD += parseFloat(v('d'+i)) || 0;
+    tP += parseFloat(v('p'+i)) || 0;
+  }
+  return (tD && tP) ? (tP / tD * 100) : 0;
+}
+
+function refreshAll() {
+  const pct = calcTgtPct();
+  const ak  = getAK();
+
+  document.getElementById('tpct').textContent = pct ? pct.toFixed(1) + '%' : '—';
+
+  let tD=0, tC=0, tP=0, hasD=false, hasP=false, done=0;
+
+  for (let i = 1; i <= rc; i++) {
+    const d = parseFloat(v('d'+i)) || 0;
+    const p = parseFloat(v('p'+i)) || 0;
+
+    // CFM Calc = Design × Target% — AK never touches this
+    const cfmEl = document.getElementById('c'+i);
+    if (cfmEl) cfmEl.value = (d && pct) ? (d * pct / 100).toFixed(1) : '';
+
+    // Prelim % = raw Prelim ÷ Design — AK never touches this
+    const pvEl = document.getElementById('pv'+i);
+    if (pvEl) {
+      if (!d || !p) { pvEl.textContent = '—'; pvEl.className = 'ppv e'; }
+      else {
+        const pp = p / d * 100;
+        pvEl.textContent = pp.toFixed(0) + '%';
+        pvEl.className = 'ppv ' + (pp >= 90 && pp <= 110 ? 'g' : (pp >= 80 && pp <= 120 ? 'm' : 'b'));
+      }
+    }
+
+    // True CFM = Prelim × AK — only this column uses AK
+    const avEl = document.getElementById('av'+i);
+    if (avEl) {
+      if (ak && p) { avEl.textContent = (p * ak).toFixed(1); avEl.className = 'akv'; }
+      else         { avEl.textContent = '—';                  avEl.className = 'akv e'; }
+    }
+
+    // Row status
+    const rowEl = document.getElementById('row'+i);
+    if (rowEl) {
+      rowEl.classList.remove('complete','partial');
+      if (d && p) rowEl.classList.add('complete');
+      else if (d || p) rowEl.classList.add('partial');
+    }
+
+    // Totals
+    if (d) { tD += d; hasD = true; if (pct) tC += d * pct / 100; }
+    if (p) { tP += p; hasP = true; }
+    if (d && p) done++;
+  }
+
+  document.getElementById('tD').textContent  = hasD ? tD : '—';
+  document.getElementById('tPt').textContent = pct ? pct.toFixed(1) + '%' : '—';
+  document.getElementById('tC').textContent  = (hasD && pct) ? tC.toFixed(0) : '—';
+  document.getElementById('tPr').textContent = hasP ? tP : '—';
+
+  const prog = Math.round(done / rc * 100);
+  document.getElementById('pf').style.width = prog + '%';
+  document.getElementById('pl').textContent  = done + ' of ' + rc + ' outlets complete';
+  document.getElementById('sbadge').textContent = done + '/' + rc;
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────
+function clearAll() {
+  if (!confirm('Clear all data?')) return;
+  s('uname',''); s('akf','');
+  for (let i = 1; i <= rc; i++) {
+    s('d'+i,''); s('p'+i,''); s('c'+i,'');
+    const pv = document.getElementById('pv'+i); if (pv) { pv.textContent='—'; pv.className='ppv e'; }
+    const av = document.getElementById('av'+i); if (av) { av.textContent='—'; av.className='akv e'; }
+    const r  = document.getElementById('row'+i); if (r) r.classList.remove('complete','partial');
+  }
+  ['tpct','tD','tPt','tC','tPr'].forEach(id => document.getElementById(id).textContent = '—');
+  document.getElementById('pf').style.width = '0%';
+  document.getElementById('pl').textContent = '0 of ' + rc + ' outlets complete';
+  document.getElementById('sbadge').textContent = '0/' + rc;
+  autoSave();
+}
+
+function addRow() { rc++; appendRow(rc); refreshAll(); autoSave(); }
+
+function copyCSV() {
+  const name = v('uname') || 'Unit';
+  const pct  = calcTgtPct();
+  const ak   = getAK();
+  let csv = 'Supply Outlet Sheet — ' + name + '\n';
+  csv += 'Outlet,Design CFM,Target %,CFM Calc,Prelim CFM,Prelim %' + (ak ? ',True CFM (AK)' : '') + '\n';
+  for (let i = 1; i <= rc; i++) {
+    const d  = v('d'+i), p = v('p'+i), c = v('c'+i);
+    const pv = document.getElementById('pv'+i)?.textContent || '';
+    const av = document.getElementById('av'+i)?.textContent || '';
+    if (d || p) {
+      csv += 'Outlet-' + String(i).padStart(2,'0') + ',' + d + ',' +
+             (pct ? pct.toFixed(1) : '') + ',' + c + ',' + p + ',' + pv +
+             (ak ? ',' + av : '') + '\n';
+    }
+  }
+  navigator.clipboard.writeText(csv)
+    .then(() => { const b = document.querySelector('.ab.pri'); b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy CSV', 2000); })
+    .catch(() => alert('Copy failed'));
+}
+
+// ── JOBS ──────────────────────────────────────────────────────
+function openJobs()  { renderJobs(); document.getElementById('ov').classList.add('open'); }
+function closeJobs() { document.getElementById('ov').classList.remove('open'); }
+function bgClose(e)  { if (e.target === document.getElementById('ov')) closeJobs(); }
+
+function renderJobs() {
+  const jobs = getJobs();
+  const jl   = document.getElementById('jlist');
+  const ids  = Object.keys(jobs).sort((a,b) => (jobs[b].ts||0) - (jobs[a].ts||0));
+  if (!ids.length) { jl.innerHTML = '<div class="nojobs">No saved jobs yet.<br>Saves automatically as you type.</div>'; return; }
+  jl.innerHTML = ids.map(id => {
+    const j   = jobs[id];
+    const n   = j.name || '(no name)';
+    const cnt = (j.outlets||[]).filter(o => o.d || o.p).length;
+    const dt  = j.ts ? new Date(j.ts).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+    return '<div class="jr" onclick="loadJob(\'' + id + '\')">' +
+      '<div class="ji"><div class="jn">' + n + '</div><div class="jm">' + cnt + ' outlets · ' + dt + '</div></div>' +
+      (id === cid ? '<span class="jab">ACTIVE</span>' : '') +
+      '<button class="jdl" onclick="delJob(event,\'' + id + '\')">🗑</button></div>';
+  }).join('');
+}
+
+function loadJob(id) {
+  const j = getJobs(); if (!j[id]) return;
+  setSavedId(id); restore(j[id]); closeJobs();
+}
+
+function delJob(e, id) {
+  e.stopPropagation();
+  if (!confirm('Delete this job?')) return;
+  const j = getJobs(); delete j[id]; putJobs(j);
+  if (cid === id) {
+    const r = Object.keys(j).sort((a,b) => (j[b].ts||0) - (j[a].ts||0));
+    if (r.length) loadJob(r[0]); else { cid = null; localStorage.removeItem('sos4c'); resetSheet(); }
+  }
+  renderJobs();
+}
+
+function newJob()   { autoSave(); cid = 'j' + Date.now(); setSavedId(cid); resetSheet(); closeJobs(); }
+function resetSheet() { rc = DR; buildRows(rc); s('uname',''); s('akf',''); refreshAll(); }
+
+// ── INIT ──────────────────────────────────────────────────────
+function init() {
+  buildRows(DR);
+  const sid = getSavedId();
+  const j   = getJobs();
+  if (sid && j[sid]) { cid = sid; restore(j[sid]); return; }
+  const ids = Object.keys(j).sort((a,b) => (j[b].ts||0) - (j[a].ts||0));
+  if (ids.length) { cid = ids[0]; setSavedId(ids[0]); restore(j[ids[0]]); }
+}
+init();
+</script>
+
+</body>
+</html>

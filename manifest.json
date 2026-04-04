@@ -1,12 +1,14 @@
 {
   "name": "Pocket Balancer",
-  "short_name": "PocketBal",
+  "short_name": "Balancer",
   "description": "HVAC field balancing tool for supply outlet air measurements",
   "start_url": "/",
   "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
   "orientation": "portrait",
-  "background_color": "#0d1018",
-  "theme_color": "#0d1018",
+  "lang": "en-US",
+  "categories": ["utilities", "productivity"],
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,7 +22,5 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "categories": ["utilities", "productivity"],
-  "lang": "en-US"
+  ]
 }

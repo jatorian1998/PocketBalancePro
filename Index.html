@@ -710,6 +710,20 @@
     .orow.complete .olbl { border-left-color: var(--go); }
     .orow.partial  .olbl { border-left-color: var(--wa); }
 
+    /* True CFM inline label under Prelim input */
+    .true-cfm {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--mu);
+      text-align: center;
+      padding: 0 2px 4px;
+      line-height: 1;
+      min-height: 14px;
+      letter-spacing: 0.3px;
+    }
+    [data-theme="terminal"] .true-cfm { color: #007700; }
+
     /* ════════════════════════════════════════════════════════════
        ACTION BAR
        ════════════════════════════════════════════════════════════ */
@@ -908,6 +922,7 @@
     <div class="tr1">
       <span class="ttl">▸ Pocket Balancer</span>
       <span class="svpill" id="svpill">SAVED ✓</span>
+      <button class="jbtn" id="installBtn" onclick="installApp()" style="display:none;">⬇ Install</button>
       <select class="theme-sel" id="themeSel" onchange="applyTheme(this.value)">
         <option value="light">☀ Light</option>
         <option value="xp">🪟 Windows XP</option>
@@ -1097,6 +1112,7 @@
       /* 3 — Prelim CFM (editable) */
       '<div class="oc c-pre">' +
         '<input type="number" inputmode="numeric" placeholder="—" id="p' + i + '" autocomplete="off" oninput="refreshAll();autoSave()">' +
+        '<span class="true-cfm" id="tc' + i + '"></span>' +
       '</div>' +
       /* 4 — Prelim CFM% = Prelim/Design×100 (display div, no AK) */
       '<div class="oc c-pp">' +
@@ -1114,7 +1130,7 @@
   }
 
   /* ── CALCULATIONS ──────────────────────────────────────────── */
-  function getAK() { return parseFloat(v('akf')) || 1; }
+  function getAK() { return parseFloat(v('akf')) || 0; }
 
   /* Target % = total Prelim ÷ total Design (no AK) */
   function calcTgtPct() {
@@ -1141,7 +1157,7 @@
       var f = parseFloat(v('f' + i)) || 0;
 
       /* Target CFM = Design × Target% × AK */
-      var tgtCFM = (d && pct) ? (d * pct / 100 * ak) : 0;
+      var tgtCFM = (d && pct) ? (d * pct / 100) : 0;
       var tEl = el('t' + i);
       if (tEl) tEl.value = tgtCFM ? tgtCFM.toFixed(1) : '';
 
@@ -1156,6 +1172,12 @@
           pvEl.textContent = pp.toFixed(1) + '%';
           pvEl.className = 'dv ' + (pp >= 90 && pp <= 110 ? 'pp-g' : (pp >= 80 && pp <= 120 ? 'pp-m' : 'pp-b'));
         }
+      }
+
+      /* True CFM = Prelim × AK — inline label under Prelim input */
+      var tcEl = el('tc' + i);
+      if (tcEl) {
+        tcEl.textContent = (p && ak && ak !== 1) ? '(True: ' + (p * ak).toFixed(0) + ')' : '';
       }
 
       /* Final CFM % = Final CFM ÷ Design × 100 */
@@ -1205,6 +1227,7 @@
     for (var i = 1; i <= rc; i++) {
       s('d' + i, ''); s('t' + i, ''); s('p' + i, ''); s('f' + i, '');
       var pv = el('pv' + i); if (pv) { pv.textContent = '—'; pv.className = 'dv pp-e'; }
+      var tc = el('tc' + i); if (tc) tc.textContent = '';
       var cp = el('cp' + i); if (cp) { cp.textContent = '—'; cp.className = 'dv fp-e'; }
       var r  = el('row' + i); if (r) r.classList.remove('complete', 'partial');
     }
@@ -1311,10 +1334,48 @@
 
   document.addEventListener('DOMContentLoaded', init);
 
+  /* ── INSTALL PROMPT ────────────────────────────────────────── */
+  var deferredInstallPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    var btn = el('installBtn');
+    if (btn) btn.style.display = 'inline-flex';
+  });
+
+  window.addEventListener('appinstalled', function() {
+    deferredInstallPrompt = null;
+    var btn = el('installBtn');
+    if (btn) btn.style.display = 'none';
+  });
+
+  function installApp() {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(function(result) {
+      deferredInstallPrompt = null;
+      var btn = el('installBtn');
+      if (btn) btn.style.display = 'none';
+    });
+  }
+
   /* ── SERVICE WORKER ────────────────────────────────────────── */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('service-worker.js')
+        .then(function(reg) {
+          reg.addEventListener('updatefound', function() {
+            var newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', function() {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.info('Pocket Balancer: new version cached and ready.');
+                }
+              });
+            }
+          });
+        })
         .catch(function(err) { console.warn('SW registration failed:', err); });
     });
   }

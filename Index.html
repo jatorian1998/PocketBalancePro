@@ -256,9 +256,258 @@
       --transition: none;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       GLOBAL TRANSITIONS
-       ════════════════════════════════════════════════════════════ */
+    /* ── SUNSET (Construction) ────────────────────────────────── */
+    [data-theme="sunset"] {
+      --bg:        #1e293b;
+      --sf:        #334155;
+      --sf2:       #3f4f66;
+      --sf3:       #4a5c72;
+      --bd:        #64748b;
+      --bd2:       #94a3b8;
+      --ac:        #f97316;
+      --ac-dim:    rgba(249,115,22,0.18);
+      --ac2:       #facc15;
+      --ac2-dim:   rgba(250,204,21,0.18);
+      --tx:        #f8fafc;
+      --tx2:       #e2e8f0;
+      --mu:        #94a3b8;
+      --go:        #4ade80;
+      --wa:        #facc15;
+      --ba:        #f87171;
+      --hb:        #0f172a;
+      --hb-tx:     #f97316;
+      --row-a:     #334155;
+      --row-b:     #2d3f52;
+      --shadow:    0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+      --col-des:   #3a4f68;
+      --col-tgt:   #3a4a60;
+      --col-pre:   #2e4a3e;
+      --col-pp:    #3d3a2e;
+      --col-fin:   #4a3820;
+      --col-fp:    #2a3d30;
+      --ch-bg:     #253347;
+      --inp-border:1.5px solid #64748b;
+      --radius:    5px;
+      --font-ui:   'Barlow Condensed', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --glow:      none;
+      --transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── BLUEPRINT ────────────────────────────────────────────── */
+    [data-theme="blueprint"] {
+      --bg:        #0f172a;
+      --sf:        #1e3a8a;
+      --sf2:       #1e40af;
+      --sf3:       #1d4ed8;
+      --bd:        #3b82f6;
+      --bd2:       #60a5fa;
+      --ac:        #38bdf8;
+      --ac-dim:    rgba(56,189,248,0.18);
+      --ac2:       #facc15;
+      --ac2-dim:   rgba(250,204,21,0.18);
+      --tx:        #e0f2fe;
+      --tx2:       #bae6fd;
+      --mu:        #7dd3fc;
+      --go:        #34d399;
+      --wa:        #facc15;
+      --ba:        #f87171;
+      --hb:        #050f20;
+      --hb-tx:     #38bdf8;
+      --row-a:     #1e3a8a;
+      --row-b:     #172d70;
+      --shadow:    0 2px 6px rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+      --col-des:   #1e3a8a;
+      --col-tgt:   #1c357f;
+      --col-pre:   #0f3355;
+      --col-pp:    #1a2f5a;
+      --col-fin:   #2d1d5e;
+      --col-fp:    #0f3344;
+      --ch-bg:     #0f1f5a;
+      --inp-border:1.5px solid #3b82f6;
+      --radius:    4px;
+      --font-ui:   'Barlow Condensed', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --glow:      none;
+      --transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── NEON CYBER ───────────────────────────────────────────── */
+    [data-theme="cyber"] {
+      --bg:        #020617;
+      --sf:        #0f172a;
+      --sf2:       #141e30;
+      --sf3:       #1a2540;
+      --bd:        #06b6d4;
+      --bd2:       #22d3ee;
+      --ac:        #22c55e;
+      --ac-dim:    rgba(34,197,94,0.15);
+      --ac2:       #06b6d4;
+      --ac2-dim:   rgba(6,182,212,0.15);
+      --tx:        #f0fdf4;
+      --tx2:       #bbf7d0;
+      --mu:        #4ade80;
+      --go:        #22c55e;
+      --wa:        #facc15;
+      --ba:        #f43f5e;
+      --hb:        #000010;
+      --hb-tx:     #22c55e;
+      --row-a:     #0f172a;
+      --row-b:     #0a1020;
+      --shadow:    0 0 8px rgba(34,197,94,0.20), 0 2px 4px rgba(0,0,0,0.5);
+      --shadow-md: 0 0 16px rgba(34,197,94,0.25), 0 4px 8px rgba(0,0,0,0.6);
+      --col-des:   #0a1f14;
+      --col-tgt:   #081a20;
+      --col-pre:   #081a10;
+      --col-pp:    #10100a;
+      --col-fin:   #0a1020;
+      --col-fp:    #081510;
+      --ch-bg:     #050f18;
+      --inp-border:1.5px solid #06b6d4;
+      --radius:    3px;
+      --font-ui:   'Barlow Condensed', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --glow:      0 0 8px rgba(34,197,94,0.7);
+      --transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── EARTH (Jobsite) ──────────────────────────────────────── */
+    [data-theme="earth"] {
+      --bg:        #292524;
+      --sf:        #44403c;
+      --sf2:       #57534e;
+      --sf3:       #6b7280;
+      --bd:        #78716c;
+      --bd2:       #a8a29e;
+      --ac:        #ca8a04;
+      --ac-dim:    rgba(202,138,4,0.18);
+      --ac2:       #d97706;
+      --ac2-dim:   rgba(217,119,6,0.18);
+      --tx:        #f5f5f4;
+      --tx2:       #e7e5e4;
+      --mu:        #a8a29e;
+      --go:        #65a30d;
+      --wa:        #d97706;
+      --ba:        #dc2626;
+      --hb:        #1c1917;
+      --hb-tx:     #fbbf24;
+      --row-a:     #44403c;
+      --row-b:     #3c3834;
+      --shadow:    0 2px 4px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.5);
+      --col-des:   #4a4540;
+      --col-tgt:   #403c38;
+      --col-pre:   #363220;
+      --col-pp:    #3d3830;
+      --col-fin:   #40301a;
+      --col-fp:    #2e3820;
+      --ch-bg:     #36322e;
+      --inp-border:1.5px solid #78716c;
+      --radius:    4px;
+      --font-ui:   'Barlow Condensed', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --glow:      none;
+      --transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── STEALTH PRO ──────────────────────────────────────────── */
+    [data-theme="stealth"] {
+      --bg:        #020617;
+      --sf:        #0f172a;
+      --sf2:       #141d2e;
+      --sf3:       #1a2540;
+      --bd:        #1e3a5f;
+      --bd2:       #2e4f7a;
+      --ac:        #3b82f6;
+      --ac-dim:    rgba(59,130,246,0.15);
+      --ac2:       #818cf8;
+      --ac2-dim:   rgba(129,140,248,0.15);
+      --tx:        #e2e8f0;
+      --tx2:       #cbd5e1;
+      --mu:        #475569;
+      --go:        #22d3ee;
+      --wa:        #f59e0b;
+      --ba:        #f43f5e;
+      --hb:        #000010;
+      --hb-tx:     #93c5fd;
+      --row-a:     #0f172a;
+      --row-b:     #0a1020;
+      --shadow:    0 2px 4px rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 10px rgba(0,0,0,0.6);
+      --col-des:   #0f1e3a;
+      --col-tgt:   #0a1830;
+      --col-pre:   #091428;
+      --col-pp:    #0f1020;
+      --col-fin:   #0a0f1e;
+      --col-fp:    #091420;
+      --ch-bg:     #060e1e;
+      --inp-border:1.5px solid #1e3a5f;
+      --radius:    6px;
+      --font-ui:   'Barlow Condensed', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --glow:      none;
+      --transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── MATRIX ───────────────────────────────────────────────── */
+    [data-theme="matrix"] {
+      --bg:        #000000;
+      --sf:        #000000;
+      --sf2:       #040804;
+      --sf3:       #091409;
+      --bd:        #00aa00;
+      --bd2:       #00cc00;
+      --ac:        #00ff41;
+      --ac-dim:    rgba(0,255,65,0.14);
+      --ac2:       #00ff41;
+      --ac2-dim:   rgba(0,255,65,0.14);
+      --tx:        #00ff41;
+      --tx2:       #00cc33;
+      --mu:        #006600;
+      --go:        #00ff41;
+      --wa:        #aaff00;
+      --ba:        #ff0000;
+      --hb:        #000000;
+      --hb-tx:     #00ff41;
+      --row-a:     #000000;
+      --row-b:     #010601;
+      --shadow:    none;
+      --shadow-md: none;
+      --col-des:   #000000;
+      --col-tgt:   #000000;
+      --col-pre:   #000000;
+      --col-pp:    #000000;
+      --col-fin:   #010200;
+      --col-fp:    #000000;
+      --ch-bg:     #001800;
+      --inp-border:1px solid #00aa00;
+      --radius:    0px;
+      --font-ui:   'Courier New', Courier, monospace;
+      --font-mono: 'Courier New', Courier, monospace;
+      --glow:      0 0 8px rgba(0,255,65,0.8);
+      --transition: none;
+    }
+
+    /* Matrix — extra glow on key elements */
+    [data-theme="matrix"] .ival,
+    [data-theme="matrix"] .tc .tv,
+    [data-theme="matrix"] .dv.pp-g,
+    [data-theme="matrix"] .dv.fp-v { text-shadow: 0 0 10px rgba(0,255,65,0.9); }
+    [data-theme="matrix"] .theme-sel { background: #000; border: 1px solid #00aa00; color: #00ff41; }
+    [data-theme="matrix"] .true-toggle-btn { border-color: #00aa00; color: #00aa00; }
+    [data-theme="matrix"] .true-toggle-btn.active { border-color: #00ff41; color: #00ff41; background: rgba(0,255,65,0.08); }
+    [data-theme="matrix"] .true-toggle-btn.active .true-toggle-dot { background: #00ff41; }
+
+    /* Neon Cyber — extra glow on key elements */
+    [data-theme="cyber"] .ival,
+    [data-theme="cyber"] .tc .tv { text-shadow: 0 0 10px rgba(34,197,94,0.8); }
+    [data-theme="cyber"] .theme-sel { background: #0f172a; border: 1px solid #06b6d4; color: #22c55e; }
+    [data-theme="cyber"] .true-toggle-btn { border-color: #06b6d4; color: #06b6d4; }
+    [data-theme="cyber"] .true-toggle-btn.active { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,0.10); }
+
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -710,19 +959,98 @@
     .orow.complete .olbl { border-left-color: var(--go); }
     .orow.partial  .olbl { border-left-color: var(--wa); }
 
-    /* True CFM inline label under Prelim input */
-    .true-cfm {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--mu);
-      text-align: center;
-      padding: 0 2px 4px;
-      line-height: 1;
-      min-height: 14px;
-      letter-spacing: 0.3px;
+    /* ── TRUE AIR TOGGLE ──────────────────────────────────────── */
+    .true-toggle-wrap {
+      display: none; /* shown via JS when AK is valid */
+      align-items: center;
+      gap: 8px;
     }
-    [data-theme="terminal"] .true-cfm { color: #007700; }
+
+    .true-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: var(--sf2);
+      border: 1.5px solid var(--bd);
+      border-radius: var(--radius);
+      color: var(--tx2);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 34px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .true-toggle-btn.active {
+      background: var(--ac-dim);
+      border-color: var(--ac);
+      color: var(--ac);
+    }
+
+    .true-toggle-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bd2);
+      display: inline-block;
+      transition: background 0.15s;
+    }
+
+    .true-toggle-btn.active .true-toggle-dot {
+      background: var(--ac);
+      box-shadow: 0 0 0 2px var(--ac-dim);
+    }
+
+    /* Terminal theme overrides */
+    [data-theme="terminal"] .true-toggle-btn { border-color: #007700; color: #007700; }
+    [data-theme="terminal"] .true-toggle-btn.active { border-color: #00ff00; color: #00ff00; background: rgba(0,255,0,0.08); }
+    [data-theme="terminal"] .true-toggle-btn.active .true-toggle-dot { background: #00ff00; }
+
+    /* Prelim cell true-air overlay */
+    .oc.c-pre { position: relative; }
+
+    .pre-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--col-pre);
+      pointer-events: none;
+    }
+
+    .pre-overlay.visible { display: flex; }
+
+    .pre-overlay .ov-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ac);
+      text-shadow: var(--glow);
+    }
+
+    .pre-overlay .ov-lbl {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--ac);
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+
+    .pre-overlay.empty .ov-val { color: var(--bd2); }
+
+    /* Terminal overrides */
+    [data-theme="terminal"] .pre-overlay { background: #000; }
+    [data-theme="terminal"] .pre-overlay .ov-val { color: #00ff00; }
+    [data-theme="terminal"] .pre-overlay .ov-lbl { color: #00aa00; }
 
     /* ════════════════════════════════════════════════════════════
        ACTION BAR
@@ -930,6 +1258,12 @@
         <option value="halloween">🎃 Halloween</option>
         <option value="christmas">🎄 Christmas</option>
         <option value="terminal">💻 Terminal</option>
+        <option value="sunset">🌅 Sunset</option>
+        <option value="blueprint">📐 Blueprint</option>
+        <option value="cyber">⚡ Neon Cyber</option>
+        <option value="earth">🪨 Earth</option>
+        <option value="stealth">🕶 Stealth Pro</option>
+        <option value="matrix">🔴 Matrix</option>
       </select>
       <button class="jbtn" onclick="openJobs()">JOBS ☰</button>
     </div>
@@ -950,7 +1284,12 @@
   <div class="ibar">
     <label>AK Factor</label>
     <input class="akin" id="akf" type="number" inputmode="decimal" step="0.001" min="0" placeholder="optional" autocomplete="off" oninput="refreshAll();autoSave()" />
-    <span class="hint">Design &times; Target% &times; AK = Target CFM</span>
+    <div class="true-toggle-wrap" id="trueToggleWrap">
+      <button class="true-toggle-btn" id="trueToggleBtn" onclick="toggleTrueAir()">
+        <span class="true-toggle-dot"></span>Show True Air
+      </button>
+    </div>
+    <span class="hint" id="akHint">Design &times; Target% = Target CFM</span>
   </div>
 
   <!-- PROGRESS -->
@@ -1112,7 +1451,10 @@
       /* 3 — Prelim CFM (editable) */
       '<div class="oc c-pre">' +
         '<input type="number" inputmode="numeric" placeholder="—" id="p' + i + '" autocomplete="off" oninput="refreshAll();autoSave()">' +
-        '<span class="true-cfm" id="tc' + i + '"></span>' +
+        '<div class="pre-overlay" id="po' + i + '">' +
+          '<span class="ov-val" id="pov' + i + '">—</span>' +
+          '<span class="ov-lbl">TRUE</span>' +
+        '</div>' +
       '</div>' +
       /* 4 — Prelim CFM% = Prelim/Design×100 (display div, no AK) */
       '<div class="oc c-pp">' +
@@ -1174,10 +1516,18 @@
         }
       }
 
-      /* True CFM = Prelim × AK — inline label under Prelim input */
-      var tcEl = el('tc' + i);
-      if (tcEl) {
-        tcEl.textContent = (p && ak && ak !== 1) ? '(True: ' + (p * ak).toFixed(0) + ')' : '';
+      /* True CFM overlay — update value, visibility controlled by trueAirMode */
+      var trueCFM = (p && ak) ? p * ak : 0;
+      var povEl = el('pov' + i);
+      var poEl  = el('po' + i);
+      if (povEl) {
+        if (trueCFM) {
+          povEl.textContent = trueCFM.toFixed(0);
+          if (poEl) poEl.classList.remove('empty');
+        } else {
+          povEl.textContent = '—';
+          if (poEl) poEl.classList.add('empty');
+        }
       }
 
       /* Final CFM % = Final CFM ÷ Design × 100 */
@@ -1217,6 +1567,19 @@
     var pfEl = el('pf'); if (pfEl) pfEl.style.width = prog + '%';
     setText('pl', done + ' of ' + rc + ' outlets complete');
     setText('sbadge', done + '/' + rc);
+
+    /* Show/hide True Air toggle based on whether AK is valid */
+    var wrap = el('trueToggleWrap');
+    var hint = el('akHint');
+    var hasValidAK = ak && ak !== 1;
+    if (wrap) wrap.style.display = hasValidAK ? 'flex' : 'none';
+    if (hint) hint.style.display = hasValidAK ? 'none' : '';
+    if (!hasValidAK && trueAirMode) {
+      trueAirMode = false;
+      applyTrueAirOverlays();
+      var btn = el('trueToggleBtn');
+      if (btn) btn.classList.remove('active');
+    }
   }
 
   /* ── ACTIONS ───────────────────────────────────────────────── */
@@ -1227,7 +1590,8 @@
     for (var i = 1; i <= rc; i++) {
       s('d' + i, ''); s('t' + i, ''); s('p' + i, ''); s('f' + i, '');
       var pv = el('pv' + i); if (pv) { pv.textContent = '—'; pv.className = 'dv pp-e'; }
-      var tc = el('tc' + i); if (tc) tc.textContent = '';
+      var pov = el('pov' + i); if (pov) pov.textContent = '—';
+      var po  = el('po' + i);  if (po)  po.classList.add('empty');
       var cp = el('cp' + i); if (cp) { cp.textContent = '—'; cp.className = 'dv fp-e'; }
       var r  = el('row' + i); if (r) r.classList.remove('complete', 'partial');
     }
@@ -1319,6 +1683,34 @@
     s('uname', '');
     s('akf', '');
     refreshAll();
+  }
+
+  /* ── TRUE AIR MODE ─────────────────────────────────────────── */
+  var trueAirMode = false;
+
+  function toggleTrueAir() {
+    trueAirMode = !trueAirMode;
+    var btn = el('trueToggleBtn');
+    if (btn) {
+      btn.classList.toggle('active', trueAirMode);
+      btn.querySelector('.true-toggle-dot');
+      var label = trueAirMode ? '● Hide True Air' : '○ Show True Air';
+      btn.innerHTML = '<span class="true-toggle-dot"></span>' + (trueAirMode ? 'Hide True Air' : 'Show True Air');
+    }
+    applyTrueAirOverlays();
+  }
+
+  function applyTrueAirOverlays() {
+    for (var i = 1; i <= rc; i++) {
+      var po = el('po' + i);
+      if (po) {
+        if (trueAirMode) {
+          po.classList.add('visible');
+        } else {
+          po.classList.remove('visible');
+        }
+      }
+    }
   }
 
   /* ── INIT ──────────────────────────────────────────────────── */

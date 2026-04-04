@@ -1237,6 +1237,205 @@
       line-height: 2.2;
     }
 
+    /* ════════════════════════════════════════════════════════════
+       JOB SETUP MODAL
+       ════════════════════════════════════════════════════════════ */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--sf);
+      border: 2px solid var(--ac);
+      border-radius: calc(var(--radius) * 2);
+      width: 100%;
+      max-width: 420px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ac);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: var(--glow);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--mu);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 2px 6px;
+      line-height: 1;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+    }
+    .modal-close:active { color: var(--tx); }
+
+    .modal-body {
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .modal-step {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-step-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--mu);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .modal-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ac);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+
+    .modal-select,
+    .modal-input {
+      width: 100%;
+      background: var(--sf2);
+      border: var(--inp-border);
+      color: var(--tx);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      min-height: 48px;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .modal-select:focus,
+    .modal-input:focus {
+      outline: none;
+      border-color: var(--ac);
+      box-shadow: 0 0 0 2px var(--ac-dim);
+    }
+
+    .modal-select option { background: var(--sf2); color: var(--tx); }
+
+    .modal-hint {
+      font-size: 11px;
+      color: var(--mu);
+      font-family: var(--font-mono);
+      letter-spacing: 0.3px;
+    }
+
+    .modal-preview {
+      background: var(--sf2);
+      border: 1px solid var(--bd);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-preview-name {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ac);
+      flex: 1;
+      text-shadow: var(--glow);
+    }
+
+    .modal-preview-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--mu);
+      background: var(--sf3);
+      padding: 3px 8px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+    }
+
+    .modal-footer {
+      padding: 0 18px 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      min-height: 50px;
+      transition: opacity 0.15s;
+    }
+    .modal-btn:active { opacity: 0.8; }
+
+    .modal-btn.cancel {
+      background: var(--sf2);
+      color: var(--mu);
+      border: 1px solid var(--bd);
+    }
+
+    .modal-btn.create {
+      background: var(--ac);
+      color: #fff;
+      box-shadow: var(--glow);
+    }
+
+    [data-theme="terminal"] .modal-btn.create { color: #000; }
+    [data-theme="matrix"]   .modal-btn.create { color: #000; }
+
+    /* XP overrides */
+    [data-theme="xp"] .modal { border-radius: 0; border: 3px outset #c0bcb4; }
+    [data-theme="xp"] .modal-select,
+    [data-theme="xp"] .modal-input { background: #fff; border: 2px inset #808080; }
+    [data-theme="xp"] .modal-btn.create { background: linear-gradient(180deg,#4a90d9,#1e5fbf); border: 2px outset #6aace0; }
+
     /* ── XP specific beveled insets ─────────────────────────── */
     [data-theme="xp"] .ibar { border: 2px inset #808080; margin: 4px; border-radius: 0; }
     [data-theme="xp"] .totbar { border: 2px inset #808080; margin: 2px 4px; }
@@ -1336,6 +1535,59 @@
       </div>
       <div id="jlist"></div>
       <button class="njb" onclick="newJob()">+ New Job / Unit</button>
+    </div>
+  </div>
+
+  <!-- JOB SETUP MODAL -->
+  <div class="modal-backdrop" id="jobModal" onclick="modalBgClose(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>New Job Setup</h3>
+        <button class="modal-close" onclick="closeJobModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- STEP 1: Unit Type -->
+        <div class="modal-step">
+          <div class="modal-step-label">
+            <span class="modal-step-num">1</span>Unit Type
+          </div>
+          <select class="modal-select" id="ms-type" onchange="onModalTypeChange()">
+            <option value="RTU">RTU (Single Zone)</option>
+            <option value="AHU">AHU (Single Zone)</option>
+            <option value="VAV">VAV</option>
+            <option value="FPB">Fan Powered Box</option>
+            <option value="EF">Exhaust Fan</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+
+        <!-- STEP 2: Number of Outlets -->
+        <div class="modal-step">
+          <div class="modal-step-label">
+            <span class="modal-step-num">2</span>Number of Outlets
+          </div>
+          <input class="modal-input" id="ms-outlets" type="number" inputmode="numeric" min="1" max="100" placeholder="e.g. 12" oninput="onModalOutletsChange()" />
+          <span class="modal-hint">Auto-filled by unit type — edit as needed</span>
+        </div>
+
+        <!-- STEP 3: Unit Name -->
+        <div class="modal-step">
+          <div class="modal-step-label">
+            <span class="modal-step-num">3</span>Unit Name / ID
+          </div>
+          <input class="modal-input" id="ms-name" type="text" maxlength="40" placeholder="e.g. RTU-01" oninput="onModalNameChange()" />
+          <div class="modal-preview">
+            <span class="modal-preview-name" id="ms-preview-name">RTU-01</span>
+            <span class="modal-preview-badge" id="ms-preview-count">12 outlets</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel" onclick="closeJobModal()">Cancel</button>
+        <button class="modal-btn create" onclick="createJobFromModal()">Create Job ▶</button>
+      </div>
     </div>
   </div>
 
@@ -1675,7 +1927,102 @@
     renderJobs();
   }
 
-  function newJob() { autoSave(); cid = 'j' + Date.now(); setSavedId(cid); resetSheet(); closeJobs(); }
+  /* ── JOB SETUP MODAL ───────────────────────────────────────── */
+
+  var UNIT_DEFAULTS = {
+    'RTU':    { outlets: 12, prefix: 'RTU' },
+    'AHU':    { outlets: 16, prefix: 'AHU' },
+    'VAV':    { outlets: 2,  prefix: 'VAV' },
+    'FPB':    { outlets: 4,  prefix: 'FPB' },
+    'EF':     { outlets: 1,  prefix: 'EXH' },
+    'Custom': { outlets: '',  prefix: 'UNIT' }
+  };
+
+  function getNextJobNumber(prefix) {
+    var jobs = getJobs();
+    var keys = Object.keys(jobs);
+    var max  = 0;
+    /* Escape prefix for safe regex use */
+    var escaped = prefix.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    var re = new RegExp('^' + escaped + '-(\\d+)$');
+    for (var k = 0; k < keys.length; k++) {
+      var j = jobs[keys[k]];
+      var n = (j && j.name) ? j.name : '';
+      var match = n.match(re);
+      if (match) {
+        var num = parseInt(match[1], 10);
+        if (!isNaN(num) && num > max) max = num;
+      }
+    }
+    return String(max + 1).padStart(2, '0');
+  }
+
+  function openJobModal() {
+    /* Reset modal to defaults */
+    var typeEl = el('ms-type');
+    if (typeEl) typeEl.value = 'RTU';
+    onModalTypeChange();
+    el('jobModal').classList.add('open');
+  }
+
+  function closeJobModal() {
+    el('jobModal').classList.remove('open');
+  }
+
+  function modalBgClose(e) {
+    if (e.target === el('jobModal')) closeJobModal();
+  }
+
+  function onModalTypeChange() {
+    var type = v('ms-type');
+    var def  = UNIT_DEFAULTS[type] || { outlets: '', prefix: 'UNIT' };
+    var num  = getNextJobNumber(def.prefix);
+    var name = def.prefix + '-' + num;
+    s('ms-outlets', def.outlets);
+    s('ms-name', name);
+    updateModalPreview();
+  }
+
+  function onModalOutletsChange() { updateModalPreview(); }
+  function onModalNameChange()    { updateModalPreview(); }
+
+  function updateModalPreview() {
+    var name     = v('ms-name').trim()    || '(no name)';
+    var outlets  = parseInt(v('ms-outlets'), 10) || 0;
+    var prevName = el('ms-preview-name');
+    var prevCnt  = el('ms-preview-count');
+    if (prevName) prevName.textContent = name;
+    if (prevCnt)  prevCnt.textContent  = outlets ? outlets + ' outlet' + (outlets !== 1 ? 's' : '') : '—';
+  }
+
+  function createJobFromModal() {
+    var name    = v('ms-name').trim();
+    var outlets = parseInt(v('ms-outlets'), 10);
+
+    if (!name)    { el('ms-name').focus();    return; }
+    if (!outlets || outlets < 1) { el('ms-outlets').focus(); return; }
+    if (outlets > 100) outlets = 100;
+
+    /* Save current job before creating new one */
+    autoSave();
+
+    /* Create new job */
+    cid = 'j' + Date.now();
+    setSavedId(cid);
+
+    /* Build sheet */
+    rc = outlets;
+    buildRows(rc);
+    s('uname', name);
+    s('akf', '');
+    refreshAll();
+    autoSave();
+
+    closeJobModal();
+    closeJobs();
+  }
+
+  function newJob() { openJobModal(); }
 
   function resetSheet() {
     rc = DR;
